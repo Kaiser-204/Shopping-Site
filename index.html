@@ -25,11 +25,11 @@
 
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button id="button-Decrease" class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input id="case-Input" type="text" class="form-control text-center" value="1">
-                           <button id="button-Increase" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button onclick="handlePhoneChange(false)" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="phone-count" type="text" class="form-control text-center" value="1">
+                           <button onclick="handlePhoneChange(true)" class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
-                        <h5 id="case-Total">$1219</h5>
+                        <h5 id="phone-Total">$1219</h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -43,9 +43,9 @@
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button id="case-decrease" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <button onclick="handleProductChange(false);" class="btn btn-default"><i class="fas fa-minus"></i></button>
                            <input id="case-count" type="text" class="form-control text-center" value="1">
-                           <button id="case-increase" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button onclick="handleProductChange(true);" class="btn btn-default"><i class="fas fa-plus"></i></button>
 
                         </div>
                         <h5 id="case-Total">$59</h5>
@@ -78,44 +78,22 @@
       </div>
       <script>
          //iphone 111
-
-
-          document.getElementById('button-Increase').addEventListener('click',function(){
-            const caseInput = document.getElementById('case-Input');
-            const caseCount = parseInt(caseInput.value);
-            caseNewCount = caseCount+1 ;
-            caseInput.value = caseNewCount;
-            const caseTotal = caseNewCount * 1219 ;
-            document.getElementById('case-Total').innerText = caseTotal ;
-            
-           
-
-         })
-
-
-          document.getElementById('button-Decrease').addEventListener('click',function(){
-            const caseInput = document.getElementById('case-Input');
-            const caseCount = parseInt(caseInput.value);
-            caseNewCount = caseCount - 1 ;
-            caseInput.value = caseNewCount;
-            const caseTotal = caseNewCount * 1219 ;
-            document.getElementById('case-Total').innerText = caseTotal ;
-
-
-         })
-
-        
-
-
+         function handlePhoneChange(isIncrease){
+         const phoneInput =  document.getElementById('phone-count');
+         const phoneCount = parseInt(phoneInput.value);
+         //const caseNewCount = caseCount+1;
+         let phoneNewCount = phoneCount ;
+         if(isIncrease == true){
+            phoneNewCount = phoneCount + 1 ;
+         }
+         if(isIncrease == false && phoneCount>0){
+            phoneNewCount = phoneCount - 1 ;
+         }
+         phoneInput.value = phoneNewCount;
+         const phoneTotal = phoneNewCount * 1219 ;
+         document.getElementById('phone-Total').innerText ='$'+ phoneTotal ;
+         }
          //casing
-         document.getElementById('case-increase').addEventListener('click',function(){
-            handleProductChange(true);
-         })
-
-         document.getElementById('case-decrease').addEventListener('click',function(){
-            handleProductChange(false);
-         })
-
          function handleProductChange(isIncrease){
          const caseInput =  document.getElementById('case-count');
          const caseCount = parseInt(caseInput.value);
